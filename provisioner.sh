@@ -1,31 +1,30 @@
 #!/usr/bin/env bash
 
 set -x 
-# update package
-sudo yum -y update
 
-# install git
-sudo yum -y  install git
-# install docker
-# sudo amazon-linux-extras install docker
-sudo yum -y install docker
-sudo service docker start
-sudo usermod -a -G docker ec2-user
-# docker service auto start
-sudo systemctl enable docker.service
-sudo systemctl start docker.service
+# Update packages
+sudo apt-get update
 
+# Install git
+sudo apt-get install -y git
 
-# install SSM
-sudo yum install https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
-#sudo systemctl start amazon-ssm-agent
+# Install Docker
+sudo apt-get install -y docker.io
+sudo systemctl start docker
+sudo usermod -aG docker $USER  # Add the current user to the docker group
 
-# install cloudwatch agent
- 
-sudo yum install https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
-sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a start
-sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+# Install AWS CLI
+sudo apt-get install -y awscli
 
-# install AWS inspector
+# Install Amazon SSM
+sudo snap install amazon-ssm-agent --classic
+sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
+
+# Install CloudWatch Agent
+wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+sudo dpkg -i amazon-cloudwatch-agent.deb
+sudo systemctl start amazon-cloudwatch-agent
+
+# Install AWS Inspector
 curl -O https://inspector-agent.amazonaws.com/linux/latest/install
 sudo bash install
