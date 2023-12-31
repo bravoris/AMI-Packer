@@ -21,7 +21,7 @@ source "amazon-ebs" "amazon-linux" {
 build {
     name = "custom-image"
     sources = [
-        ""source.amazon-ebs.amazon-linux""
+        "source.amazon-ebs.amazon-linux"
     ]
 
 
