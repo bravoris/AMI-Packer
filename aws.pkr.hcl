@@ -9,13 +9,14 @@ packer {
 
 
 source "amazon-ebs" "amazon-linux" {
-  profile       = var.profile
-  ami_name      = var.ami_name
-  instance_type = var.instance_type
-  region        = var.region
-  source_ami    = var.source_ami
-  ami_regions   = var.ami_regions
-  ssh_username  = var.ssh_username
+  profile       = "default"
+  ami_name      = "Packer-build-ami"
+  instance_type = "t2.micro"
+  region        = "us-east-1"
+  source_ami    = "ami-05d47d29a4c2d19e1"
+  ami_users     = "411812903382"
+  ami_regions   = "us-east-1"
+  ssh_username  = "ubuntu"
 }
 
 build {
