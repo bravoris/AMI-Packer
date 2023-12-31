@@ -9,8 +9,8 @@ pipeline {
                     accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                     secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                 ]]) {
-                    sh "packer init -var aws.pkr.hcl"
-                    sh "packer build -var aws.pkr.hcl"
+                    sh "packer init -var=variables.pkr.hcl aws.pkr.hcl"
+                    sh "packer build -var=variables.pkr.hcl aws.pkr.hcl"
                 }
             }
         }
