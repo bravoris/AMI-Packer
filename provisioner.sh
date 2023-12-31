@@ -26,5 +26,5 @@ sudo dpkg -i amazon-cloudwatch-agent.deb
 sudo systemctl start amazon-cloudwatch-agent
 
 # Install AWS Inspector
-curl -O https://inspector-agent.amazonaws.com/linux/latest/install
-sudo bash install
+#curl -O https://inspector-agent.amazonaws.com/linux/latest/install
+#sudo bash install
